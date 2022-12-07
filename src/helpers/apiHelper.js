@@ -28,6 +28,15 @@ const getDigimonById = async id => {
     console.error(error);
   }
 };
+const getDigimonByName = async name => {
+  const url = `https://digi-api.com/api/v1/digimon?name=${name}`;
+  try {
+    const response = await axios.get(url);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 const getDigimonNextpage = async (previousPage, pageSize) => {
   const url = `https://digi-api.com/api/v1/digimon?page=${
     page + 1
@@ -40,4 +49,10 @@ const getDigimonNextpage = async (previousPage, pageSize) => {
   }
 };
 
-export {getAllDigimon, getDigimonsByPage, getDigimonById, getDigimonNextpage};
+export {
+  getAllDigimon,
+  getDigimonsByPage,
+  getDigimonById,
+  getDigimonNextpage,
+  getDigimonByName,
+};

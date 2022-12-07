@@ -6,9 +6,6 @@ import {
   getDigimonNextpage,
 } from '../src/helpers/apiHelper';
 
-getDigimonsByPage(1, 20);
-getDigimonNextpage(1, 20);
-
 const DigidexScreen = () => {
   return (
     <View>
