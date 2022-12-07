@@ -4,9 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import SupportScreen from './screens/SupportScreen';
-import DigidexScreen from './screens/DigidexScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import SupportScreen from './src/components/screens/SupportScreen';
+import DigidexScreen from './src/components/screens/DigidexScreen';
+import ProfileScreen from './src/components/screens/ProfileScreen';
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
