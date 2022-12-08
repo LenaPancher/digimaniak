@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, Image, ScrollView, TouchableHighlight} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableHighlight,
+} from 'react-native';
 import React, {useState} from 'react';
 
 const ProfileScreen = () => {
@@ -7,9 +14,9 @@ const ProfileScreen = () => {
   const [uriProfil, setUriProfil] = useState(
     'https://wikimon.net/images/thumb/5/56/Ryou.gif/140px-Ryou.gif',
   );
-  const [uriDigi, setUriDigi] =setState(
-      ''
-  )
+  const [uriDigi, setUriDigi] = useState(
+    'https://digimon-api.com/images/digimon/w/Dukemon(Crimson_Mode).png',
+  );
 
   return (
     <ScrollView>
@@ -35,7 +42,7 @@ const ProfileScreen = () => {
               <Image
                 style={styles.digiPicture}
                 source={{
-                  uri: uriProfil,
+                  uri: uriDigi,
                 }}
               />
             </View>
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   viewGlobalPartner: {
-    marginHorizontal: 30,
+    marginHorizontal: 70,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
