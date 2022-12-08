@@ -30,6 +30,7 @@ const DigidexScreen = () => {
   };
   const decideLoading = () => {
     if (search.length == 0) {
+      // page = 0;
       loadData();
     }
   };
@@ -73,7 +74,6 @@ const DigidexScreen = () => {
         onEndReached={() => decideLoading()}
         style={styles.listItem}
         data={data}
-        extraData={searchItem}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           return <ItemDigimon item={item} />;
