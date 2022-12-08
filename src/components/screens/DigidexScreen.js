@@ -24,13 +24,13 @@ const DigidexScreen = () => {
     setData([...data, ...res.content]);
   };
 
+  const loadDataFromStart = async () => {
+    const res = await getDigimonsByPage(0, 20);
+    setData([]);
+    setData([...data, ...res.content]);
+  };
   const decideLoading = () => {
-    console.log(' Je suis dans le decideLoading');
-    console.log(' Je suis dans le decideLoading');
-    console.log(' Je suis dans le decideLoading');
     if (search.length == 0) {
-      console.log();
-      page = 0;
       loadData();
     }
   };
@@ -47,16 +47,11 @@ const DigidexScreen = () => {
   };
 
   const searchItem = useMemo(() => {
-    console.log(search.length);
-    console.log(search.length);
-    console.log(search.length);
-    console.log(search.length);
+    console.log('Used from start');
     if (search.length == 0) {
-      console.log(data);
       setData([]);
-      page = 0;
-      loadData();
-      console.log('Apres decideLoading : ', data);
+      loadDataFromStart();
+      setData[data.splice(0, 20)];
     }
     if (search.length > 0) {
       searchData().then(res => {

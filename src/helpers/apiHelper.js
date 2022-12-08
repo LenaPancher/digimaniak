@@ -31,7 +31,7 @@ const getDigimonById = async id => {
   }
 };
 const getDigimonByName = async name => {
-  const url = `https://digi-api.com/api/v1/digimon?name=${name}`;
+  const url = `https://digi-api.com/api/v1/digimon?name=${name}&pageSize=20`;
   try {
     const response = await axios.get(url);
     return response.data;
