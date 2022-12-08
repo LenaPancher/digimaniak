@@ -117,16 +117,13 @@ export default () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: '#262b2f',
-  },
-  container: {
     flex: 1,
     backgroundColor: '#fbc55e',
   },
   topContent: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    flex: 3,
   },
   logo: {
     width: 300,

@@ -23,11 +23,11 @@ const SupportScreen = () => {
           ! Apprenez-en plus sur chaque créature et devenez Digimon Tamer.
         </Text>
         <View style={styles.icons}>
-          <Image source={require('./assets/apple.png')} />
+          <Image source={require('../../assets/apple.png')} />
           <Text style={styles.iconsText}>IOS</Text>
-          <Image source={require('./assets/android.png')} />
+          <Image source={require('../../assets/android.png')} />
           <Text style={styles.iconsText}>ANDROID</Text>
-          <Image source={require('./assets/web.png')} />
+          <Image source={require('../../assets/web.png')} />
           <Text style={styles.iconsText}>Web</Text>
         </View>
         <View style={styles.section}>

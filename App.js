@@ -15,11 +15,6 @@ const Tab = createBottomTabNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator>
-<<<<<<< HEAD
-      <Tab.Screen name="Support" component={SupportScreen} />
-      <Tab.Screen name="Digidex" component={DigidexScreen} />
-      <Tab.Screen name="Profil" component={ProfileScreen} />
-=======
       <Tab.Screen
         name="Digidex"
         component={DigidexScreen}
@@ -58,7 +53,6 @@ function TabNavigator() {
           },
         }}
       />
->>>>>>> main
       <Tab.Screen name="Login" component={LoginScreen} />
     </Tab.Navigator>
   );
