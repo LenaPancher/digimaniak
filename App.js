@@ -56,7 +56,6 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen name="Login" component={LoginScreen} />
-      <Tab.Screen name="DigimonCard" component={DigimonCard} />
     </Tab.Navigator>
   );
 }
