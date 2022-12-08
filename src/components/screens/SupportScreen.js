@@ -29,29 +29,30 @@ const SupportScreen = () => {
         <View style={styles.section}>
           <Text style={styles.subtitle}>Fonctionnnalités de l'application</Text>
           <Text style={styles.text}>
-            Connectez-vous à travers le service Google et accédez au Digidex. Le
-            Digidex est une encyclopédie recensant chaques créatures fictives de
-            l'univers Digimon. Cet outil sert également à se renseigner sur les
-            différentes espèces et permet de savoir son nom, ses attributs, ses
-            compétences, ses possibles évolutions et voir à quoi il ressemble.
-            Vous pourez également créer votre devenir Digimon Trainer, en
-            renseignant votre pseudo, votre image et digimon favori.
+            Connectez-vous à travers le service Google et accédez au Digidex.
+            {'\n'}Le Digidex est une encyclopédie recensant chaques créatures
+            fictives de l'univers Digimon. {'\n'}Cet outil sert également à se
+            renseigner sur les différentes espèces et permet de savoir son nom,
+            ses attributs, ses compétences, ses possibles évolutions et voir à
+            quoi il ressemble. {'\n'}Vous pourez également créer votre devenir
+            Digimon Trainer, en renseignant votre pseudo, votre image et digimon
+            favori.
           </Text>
         </View>
         <View style={styles.section}>
           <Text style={styles.subtitle}>Utilisation</Text>
           <Text style={styles.text}>
-            "git pull https://github.com/LenaPancher/digimaniak.git" && "cd
-            digimaniak Récupérer le projet depuis github"
+            - Récupérer le projet depuis github : "git pull
+            https://github.com/LenaPancher/digimaniak.git" && "cd digimaniak"
           </Text>
           <Text style={styles.text}>
-            npm i Installer toutes les dépendances de l'application
+            - Installer toutes les dépendances de l'application : "npm i"
           </Text>
           <Text style={styles.text}>
-            npx react-native run-ios Lancer l'appli iOS (requiert MacOS).
+            - Lancer l'appli iOS (requiert MacOS) : "npx react-native run-ios"
           </Text>
           <Text style={styles.text}>
-            npx react-native run-android Lancer l'appli android
+            - Lancer l'appli android : "npx react-native run-android"
           </Text>
         </View>
         <View style={styles.section}>
