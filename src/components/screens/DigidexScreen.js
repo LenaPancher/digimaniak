@@ -10,10 +10,12 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import ItemDigimon from '../items/item';
 import {getDigimonByName, getDigimonsByPage} from '../../helpers/apiHelper';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 let page = 0;
 
-const DigidexScreen = () => {
+const DigidexScreen = props => {
+  const {navigation} = props;
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
@@ -42,12 +44,10 @@ const DigidexScreen = () => {
 
   const searchData = async () => {
     const res = await getDigimonByName(search);
-    //console.log(res.content);
     return res.content;
   };
 
   const searchItem = useMemo(() => {
-    console.log('Used from start');
     if (search.length == 0) {
       setData([]);
       loadDataFromStart();
@@ -61,6 +61,10 @@ const DigidexScreen = () => {
     }
     //setSearchList([...test]);
   }, [searchList, search]);
+
+  const goToDigimonCard = useCallback(id => {
+    navigation.navigate('DigimonCard', {digimonId: id});
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -76,7 +80,14 @@ const DigidexScreen = () => {
         data={data}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
-          return <ItemDigimon item={item} />;
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                goToDigimonCard(item.id);
+              }}>
+              <ItemDigimon item={item} />
+            </TouchableOpacity>
+          );
         }}
       />
     </SafeAreaView>

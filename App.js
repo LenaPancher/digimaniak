@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
@@ -12,13 +13,14 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DigimonCard from './src/components/items/DigimonCard';
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 function TabNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Digidex"
-        component={DigidexScreen}
+        component={DigimonFeed}
         options={{
           tabBarLabel: 'Digidex',
           tabBarActiveTintColor: '#145764',
@@ -65,6 +67,15 @@ const App = () => {
     <NavigationContainer>
       <TabNavigator />
     </NavigationContainer>
+  );
+};
+
+const DigimonFeed = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Digidex" component={DigidexScreen} />
+      <Stack.Screen name="DigimonCard" component={DigimonCard} />
+    </Stack.Navigator>
   );
 };
 
