@@ -17,9 +17,22 @@ const DigidexScreen = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
+  const [hasData, setHasData] = useState([]);
+
   const loadData = async () => {
     const res = await getDigimonsByPage(page++, 20);
     setData([...data, ...res.content]);
+  };
+
+  const decideLoading = () => {
+    console.log(' Je suis dans le decideLoading');
+    console.log(' Je suis dans le decideLoading');
+    console.log(' Je suis dans le decideLoading');
+    if (search.length == 0) {
+      console.log();
+      page = 0;
+      loadData();
+    }
   };
 
   useEffect(() => {
@@ -33,11 +46,25 @@ const DigidexScreen = () => {
     return res.content;
   };
 
-  const searchItem = useMemo(async () => {
-    let test = await searchData();
-    console.log('TEEESSSSST ==== ', test);
+  const searchItem = useMemo(() => {
+    console.log(search.length);
+    console.log(search.length);
+    console.log(search.length);
+    console.log(search.length);
+    if (search.length == 0) {
+      console.log(data);
+      setData([]);
+      page = 0;
+      loadData();
+      console.log('Apres decideLoading : ', data);
+    }
+    if (search.length > 0) {
+      searchData().then(res => {
+        setData([]);
+        setData(res);
+      });
+    }
     //setSearchList([...test]);
-    return test;
   }, [searchList, search]);
 
   return (
@@ -49,10 +76,9 @@ const DigidexScreen = () => {
         placeholder={'Rechercher un digimon...'}
       />
       <FlatList
-        onEndReached={() => loadData()}
+        onEndReached={() => decideLoading()}
         style={styles.listItem}
         data={data}
-        extraData={searchItem}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           //console.log(item);
