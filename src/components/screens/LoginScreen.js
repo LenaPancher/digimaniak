@@ -118,21 +118,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#262b2f',
   },
   container: {
-    height: Dimensions.get('window').height,
+    flex: 1,
     backgroundColor: '#fbc55e',
   },
   topContent: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   bottomContent: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   mainText: {
-    fontSize: 54,
+    fontSize: 35,
     color: '#145764',
   },
   googleButton: {
