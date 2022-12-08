@@ -5,8 +5,10 @@ import {
   Image,
   ScrollView,
   TouchableHighlight,
+  Button,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const ProfileScreen = () => {
   const [pseudo, setPseudo] = useState('Rio Akiyama');
@@ -18,6 +20,16 @@ const ProfileScreen = () => {
     'https://digimon-api.com/images/digimon/w/Dukemon(Crimson_Mode).png',
   );
 
+  const takePicture = useCallback(() => {
+    launchCamera({mediaType: 'photo', cameraType: 'front'}).then(photo => {
+      if (photo.didCancel) {
+        return;
+      }
+      console.log(photo);
+      setUriProfil(photo.assets[0].uri);
+    });
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.cardProfile}>
@@ -27,6 +39,7 @@ const ProfileScreen = () => {
             uri: uriProfil,
           }}
         />
+        <Button title="TAKE A PICTURE" onPress={takePicture} />
         <View style={styles.infoProfile}>
           <Text style={styles.pseudo}>{pseudo}</Text>
           <Text style={styles.email}>{email}</Text>
