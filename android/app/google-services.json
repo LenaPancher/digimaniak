@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "326699004510",
+    "project_id": "digimaniak-b659f",
+    "storage_bucket": "digimaniak-b659f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326699004510:android:9a1c659771fdd376c8facf",
+        "android_client_info": {
+          "package_name": "com.digimaniak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326699004510-ju1tospkt6f6ofp6nfp1dpr2obq991cl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digimaniak",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "326699004510-19r8qtdnqa301nic2cof1g6j36i75rt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8Wn58-J_GsUIWx2LFEbWWnevm8U0xZZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326699004510-19r8qtdnqa301nic2cof1g6j36i75rt9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
