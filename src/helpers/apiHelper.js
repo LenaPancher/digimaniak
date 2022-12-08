@@ -4,7 +4,6 @@ const getAllDigimon = async () => {
   const url = 'https://digi-api.com/api/v1/digimon';
   try {
     const response = await axios.get(url);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -25,7 +24,7 @@ const getDigimonById = async id => {
   const url = `https://digi-api.com/api/v1/digimon/${id}`;
   try {
     const response = await axios.get(url);
-    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
