@@ -17,12 +17,12 @@ const Stack = createStackNavigator();
 
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen
-        name="Digidex"
+        name="DigimonFeed"
         component={DigimonFeed}
         options={{
-          tabBarLabel: 'Digidex',
+          tabBarLabel: 'DigimonFeed',
           tabBarActiveTintColor: '#145764',
           tabBarIcon: ({focused, color}) => {
             focused ? (color = '#145764') : color;
