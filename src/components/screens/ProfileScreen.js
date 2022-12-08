@@ -39,9 +39,9 @@ const ProfileScreen = () => {
             uri: uriProfil,
           }}
         />
+        <Button title="TAKE A PICTURE" onPress={takePicture} />
         <View style={styles.infoProfile}>
           <Text style={styles.pseudo}>{pseudo}</Text>
-          <Button title="TAKE A PICTURE" onPress={takePicture} />
           <Text style={styles.email}>{email}</Text>
         </View>
         <View style={styles.digiPartner}>
