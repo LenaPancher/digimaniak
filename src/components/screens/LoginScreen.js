@@ -9,6 +9,7 @@ import {
   StatusBar,
   Button,
   Alert,
+  Image,
 } from 'react-native';
 
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
@@ -83,30 +84,31 @@ export default () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" />
-      <View style={styles.container}>
-        <View style={styles.topContent}>
-          <Text style={styles.mainText}>DigimaniaK</Text>
+      <View style={styles.topContent}>
+        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Text style={styles.mainText}>
+          Bienvenue au club des dresseurs Digimon !
+        </Text>
+      </View>
+      <View style={styles.bottomContent}>
+        <View style={styles.sectionContainer}>
+          {!loggedIn && (
+            <GoogleSigninButton
+              style={{width: 192, height: 48}}
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={signIn}
+            />
+          )}
         </View>
-        <View style={styles.bottomContent}>
-          <View style={styles.sectionContainer}>
-            {!loggedIn && (
-              <GoogleSigninButton
-                style={{width: 192, height: 48}}
-                size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Dark}
-                onPress={signIn}
-              />
-            )}
-          </View>
-          <View style={styles.buttonContainer}>
-            {!user && <Text>You are currently logged out</Text>}
-            {user && (
-              <View>
-                <Text>Welcome {user.displayName}</Text>
-                <Button onPress={signOut} title="LogOut" color="red" />
-              </View>
-            )}
-          </View>
+        <View style={styles.buttonContainer}>
+          {!user && <Text>You are currently logged out</Text>}
+          {user && (
+            <View>
+              <Text>Welcome {user.displayName}</Text>
+              <Button onPress={signOut} title="LogOut" color="#145764" />
+            </View>
+          )}
         </View>
       </View>
     </SafeAreaView>
@@ -126,6 +128,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  logo: {
+    width: 300,
+    height: 300,
+    borderRadius: 300,
+  },
   bottomContent: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -134,6 +141,8 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 35,
     color: '#145764',
+    textAlign: 'center',
+    margin: 20,
   },
   googleButton: {
     backgroundColor: 'white',
@@ -164,7 +173,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   sectionContainer: {
-    marginTop: 32,
     paddingHorizontal: 24,
     flexDirection: 'row',
     alignItems: 'center',
@@ -172,5 +180,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignSelf: 'center',
+    marginTop: 10,
   },
 });
