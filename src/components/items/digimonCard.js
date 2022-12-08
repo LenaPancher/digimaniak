@@ -3,7 +3,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {StyleSheet, Image} from 'react-native';
 import {getDigimonById, getDigimonByName} from '../../helpers/apiHelper';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
 
 const DigimonCard = ({route, navigation}) => {
   const {digimonId} = route.params;
@@ -50,7 +49,8 @@ const DigimonCard = ({route, navigation}) => {
               source={{
                 uri: digimonImage,
               }}
-              style={styles.digimonImage}></Image>
+              style={styles.digimonImage}
+            />
           </View>
           <View style={[styles.cardInfo]}>
             <View style={styles.infoHeader}>

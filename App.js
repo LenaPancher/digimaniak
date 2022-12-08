@@ -9,9 +9,8 @@ import SupportScreen from './src/components/screens/SupportScreen';
 import DigidexScreen from './src/components/screens/DigidexScreen';
 import ProfileScreen from './src/components/screens/ProfileScreen';
 import LoginScreen from './src/components/screens/LoginScreen';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import DigimonCard from './src/components/items/DigimonCard';
+import DigimonCard from './src/components/items/digimonCard';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
