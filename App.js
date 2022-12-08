@@ -10,6 +10,7 @@ import ProfileScreen from './src/components/screens/ProfileScreen';
 import LoginScreen from './src/components/screens/LoginScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import DigimonCard from './src/components/items/DigimonCard';
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
@@ -54,6 +55,7 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen name="Login" component={LoginScreen} />
+      <Tab.Screen name="DigimonCard" component={DigimonCard} />
     </Tab.Navigator>
   );
 }
