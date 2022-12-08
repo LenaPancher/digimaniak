@@ -16,19 +16,29 @@ let page = 0;
 const DigidexScreen = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
+  const [searchList, setSearchList] = useState([]);
   const loadData = async () => {
     const res = await getDigimonsByPage(page++, 20);
     setData([...data, ...res.content]);
   };
 
-  const searchItem = useMemo(() => {
-    return data.filter(item => item.name.includes(search));
-  }, [data, search]);
-
   useEffect(() => {
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const searchData = async () => {
+    const res = await getDigimonByName(search);
+    //console.log(res.content);
+    return res.content;
+  };
+
+  const searchItem = useMemo(async () => {
+    let test = await searchData();
+    console.log('TEEESSSSST ==== ', test);
+    //setSearchList([...test]);
+    return test;
+  }, [searchList, search]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -41,9 +51,11 @@ const DigidexScreen = () => {
       <FlatList
         onEndReached={() => loadData()}
         style={styles.listItem}
-        data={searchItem}
+        data={data}
+        extraData={searchItem}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
+          //console.log(item);
           return <ItemDigimon item={item} />;
         }}
       />
