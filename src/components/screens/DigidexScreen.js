@@ -18,7 +18,6 @@ const DigidexScreen = () => {
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
   const [hasData, setHasData] = useState([]);
-
   const loadData = async () => {
     const res = await getDigimonsByPage(page++, 20);
     setData([...data, ...res.content]);
@@ -74,9 +73,9 @@ const DigidexScreen = () => {
         onEndReached={() => decideLoading()}
         style={styles.listItem}
         data={data}
+        extraData={searchItem}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
-          //console.log(item);
           return <ItemDigimon item={item} />;
         }}
       />
