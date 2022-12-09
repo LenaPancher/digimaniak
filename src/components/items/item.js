@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#fbc55e',
-    marginVertical: 1,
     flexDirection: 'row',
     padding: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: '#145764',
   },
   image: {
     width: 100,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     fontWeight: 'bold',
     fontSize: 17,
-    color: 'black',
+    color: '#145764',
   },
 });
 
