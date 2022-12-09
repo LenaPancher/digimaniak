@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -31,6 +31,7 @@ export default props => {
     try {
       await GoogleSignin.hasPlayServices();
       const {accessToken, idToken} = await GoogleSignin.signIn();
+
       setloggedIn(true);
 
       const credential = auth.GoogleAuthProvider.credential(
@@ -82,7 +83,7 @@ export default props => {
     });
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
-  }, []);
+  });
 
   async function removeStorage() {
     try {
@@ -133,6 +134,17 @@ export default props => {
             <View>
               <Text>Welcome {user.displayName}</Text>
               <Button onPress={signOut} title="LogOut" color="#145764" />
+            </View>
+          )}
+        </View>
+        <View style={styles.buttonContainer}>
+          {user && (
+            <View>
+              <Button
+                onPress={() => navigation.navigate('TestNavigate')}
+                title="Go Back To App"
+                color="grey"
+              />
             </View>
           )}
         </View>

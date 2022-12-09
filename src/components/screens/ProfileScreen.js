@@ -12,7 +12,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation: {navigate}}) => {
   const [pseudo, setPseudo] = useState('Rio Akiyama');
   const [email, setEmail] = useState('rio@Akiyama.com');
   const [userData, setUserData] = useState({});
@@ -24,14 +24,20 @@ const ProfileScreen = () => {
   );
 
   const takePicture = useCallback(() => {
-    launchCamera({mediaType: 'photo', cameraType: 'front'}).then(photo => {
+    launchCamera({
+      mediaType: 'photo',
+      cameraType: 'front',
+      saveToPhotos: true,
+    }).then(photo => {
       if (photo.didCancel) {
         return;
       }
       console.log(photo);
+      console.log(userData.uid);
       setUriProfil(photo.assets[0].uri);
     });
-  }, []);
+  }, [userData]);
+
 
   const getData = async () => {
     try {
@@ -42,6 +48,7 @@ const ProfileScreen = () => {
       // error reading value
     }
   };
+
 
   useFocusEffect(
     useCallback(() => {
@@ -56,6 +63,11 @@ const ProfileScreen = () => {
 
   return (
     <ScrollView>
+      <Button
+        title="GO BACK TO LOGIN SCREEN"
+        onPress={() => navigate('Login')}
+        color="#145764"
+      />
       <View style={styles.cardProfile}>
         <Image
           style={styles.image}
