@@ -1,12 +1,18 @@
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {StyleSheet, Image, ActivityIndicator} from 'react-native';
 import {getDigimonById} from '../../helpers/apiHelper';
 import {ScrollView} from 'react-native-gesture-handler';
+import {useSelector, useDispatch} from 'react-redux';
+import {actions as favoriteActions} from '../../redux/reducers/favoriteReducer';
 
 const DigimonCard = ({route, navigation}) => {
   const {digimonId} = route.params;
   const [digimon, setDigimon] = useState();
+
+  const {favorite} = useSelector(state => state.favorite);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
 
   const getDigimon = useCallback(async () => {
     const res = await getDigimonById(digimonId);
@@ -65,6 +71,24 @@ const DigimonCard = ({route, navigation}) => {
     }
   }, [digimon]);
 
+  const getIsFavoriteText = useMemo(() => {
+    if (favorite != {} && digimon !== undefined) {
+      if (favorite.id == digimon.data.id) {
+        setIsFavorite(true);
+        return 'Ce digimon est votre favori !';
+      } else {
+        setIsFavorite(false);
+        return 'Faire de ce digimon votre favori';
+      }
+    }
+    return 'Faire de ce digimon votre favori';
+  }, [digimon, favorite]);
+
+  const makeFavorite = useCallback(() => {
+    dispatch(favoriteActions.addFavorite(digimon));
+    setIsFavorite(true);
+  });
+
   useEffect(() => {
     getDigimon();
   }, []);
@@ -119,6 +143,14 @@ const DigimonCard = ({route, navigation}) => {
               {getSkillFlavor}
             </Text>
           </View>
+        </View>
+        <View style={{marginTop: 20}}>
+          <TouchableOpacity
+            onPress={() => {
+              makeFavorite();
+            }}>
+            <Text>{getIsFavoriteText}</Text>
+          </TouchableOpacity>
         </View>
         <View style={{marginTop: 20}}>
           <Text

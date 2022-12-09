@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
-import ItemDigimon from '../items/item';
+import ItemDigimon from '../items/Item';
 import {getDigimonByName, getDigimonsByPage} from '../../helpers/apiHelper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 

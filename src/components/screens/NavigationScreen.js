@@ -4,7 +4,7 @@ import SupportScreen from './SupportScreen';
 import LoginScreen from './LoginScreen';
 import React from 'react';
 import DigidexScreen from './DigidexScreen';
-import DigimonCard from '../items/digimonCard';
+import DigimonCard from '../items/DigimonCard';
 
 import 'react-native-gesture-handler';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
