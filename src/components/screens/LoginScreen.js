@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Dimensions,
   SafeAreaView,
@@ -20,7 +20,10 @@ import {
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 
-export default () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export default props => {
+  const {navigation} = props;
   const [loggedIn, setloggedIn] = useState(false);
   const [user, setUser] = useState([]);
 
@@ -35,6 +38,8 @@ export default () => {
         accessToken,
       );
       await auth().signInWithCredential(credential);
+
+      navigation.navigate('TestNavigate');
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -50,9 +55,20 @@ export default () => {
       }
     }
   };
+
+  const storeData = async value => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@userData', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
   function onAuthStateChanged(user) {
     setUser(user);
     console.log(user);
+    storeData(user);
     if (user) {
       setloggedIn(true);
     }
@@ -68,6 +84,15 @@ export default () => {
     return subscriber; // unsubscribe on unmount
   }, []);
 
+  async function removeStorage() {
+    try {
+      await AsyncStorage.removeItem('@userData');
+    } catch (e) {
+      // remove error
+    }
+    console.log('Done.');
+  }
+
   const signOut = async () => {
     try {
       await GoogleSignin.revokeAccess();
@@ -77,6 +102,7 @@ export default () => {
         .then(() => Alert.alert('Your are signed out!'));
       setloggedIn(false);
       // setuserInfo([]);
+      removeStorage();
     } catch (error) {
       console.error(error);
     }

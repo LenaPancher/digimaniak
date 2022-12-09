@@ -7,12 +7,15 @@ import {
   TouchableHighlight,
   Button,
 } from 'react-native';
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useFocusEffect} from '@react-navigation/native';
 
 const ProfileScreen = () => {
   const [pseudo, setPseudo] = useState('Rio Akiyama');
   const [email, setEmail] = useState('rio@Akiyama.com');
+  const [userData, setUserData] = useState({});
   const [uriProfil, setUriProfil] = useState(
     'https://wikimon.net/images/thumb/5/56/Ryou.gif/140px-Ryou.gif',
   );
@@ -29,6 +32,27 @@ const ProfileScreen = () => {
       setUriProfil(photo.assets[0].uri);
     });
   }, []);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@userData');
+      console.log('JSON =====', jsonValue);
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      getData().then(user => {
+        setUserData(user);
+        setPseudo(user.displayName);
+        setEmail(user.email);
+        setUriProfil(user.photoURL);
+      });
+    }, []),
+  );
 
   return (
     <ScrollView>

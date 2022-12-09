@@ -11,70 +11,12 @@ import ProfileScreen from './src/components/screens/ProfileScreen';
 import LoginScreen from './src/components/screens/LoginScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DigimonCard from './src/components/items/digimonCard';
+import DigimonNavigation from './src/components/screens/NavigationScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabNavigator() {
-  return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Tab.Screen
-        name="Digidex"
-        component={DigimonFeed}
-        options={{
-          tabBarLabel: 'Digidex',
-          tabBarActiveTintColor: '#145764',
-          tabBarIcon: ({focused, color}) => {
-            focused ? (color = '#145764') : color;
-            return <Ionicons name="home" color={color} size={25} />;
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarActiveTintColor: '#145764',
-          tabBarIcon: ({focused, color}) => {
-            focused ? (color = '#145764') : color;
-            return <Ionicons name="person" color={color} size={25} />;
-          },
-        }}
-      />
-      <Tab.Screen
-        name="About"
-        component={SupportScreen}
-        options={{
-          tabBarLabel: 'About',
-          tabBarActiveTintColor: '#145764',
-          tabBarIcon: ({focused, color}) => {
-            focused ? (color = '#145764') : color;
-            return (
-              <Ionicons name="information-circle" color={color} size={25} />
-            );
-          },
-        }}
-      />
-      <Tab.Screen name="Login" component={LoginScreen} />
-    </Tab.Navigator>
-  );
-}
-
 const App = () => {
-  return (
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
-  );
-};
-
-const DigimonFeed = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Digidex" component={DigidexScreen} />
-      <Stack.Screen name="DigimonCard" component={DigimonCard} />
-    </Stack.Navigator>
-  );
+  return <DigimonNavigation></DigimonNavigation>;
 };
 
 const styles = StyleSheet.create({});
