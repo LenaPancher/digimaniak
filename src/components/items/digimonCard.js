@@ -1,53 +1,93 @@
 import {View, Text} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
-import {StyleSheet, Image} from 'react-native';
+import React, {useCallback, useEffect, useState, useMemo} from 'react';
+import {StyleSheet, Image, ActivityIndicator} from 'react-native';
 import {getDigimonById, getDigimonByName} from '../../helpers/apiHelper';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const DigimonCard = ({route, navigation}) => {
   const {digimonId} = route.params;
-
-  const [digimonData, setDigimonData] = useState('');
-  const [digimonName, setDigimonName] = useState('');
-  const [digimonImage, setDigimonImage] = useState('');
-  const [digimonReleaseDate, setDigimonReleaseDate] = useState('');
-  const [digimonDescription, setDigimonDescription] = useState('');
-  const [digimonSkills, setDigimonSkills] = useState([{skill: ''}]);
-  const [digimonLevel, setDigimonLevel] = useState([{level: ''}]);
-  const [digimonTypes, setDigimonTypes] = useState([{type: ''}]);
+  const [digimon, setDigimon] = useState();
 
   const getDigimon = useCallback(async () => {
     const res = await getDigimonById(digimonId);
-    //console.log(res);
-    setDigimonImage(res.images[0].href);
-    setDigimonName(res.name);
-    setDigimonReleaseDate(res.releaseDate);
-    setDigimonLevel(res.levels);
-    setDigimonSkills(res.skills);
-    setDigimonTypes(res.types);
-    for (let i = 0; i < res.descriptions.length; i++) {
-      if (res.descriptions[i].language == 'en_us') {
-        setDigimonDescription(res.descriptions[i].description);
+    setDigimon({data: res});
+  }, []);
+
+  const getDescription = useMemo(() => {
+    if (digimon === undefined) {
+      return 'Missing description';
+    }
+    for (let i = 0; i < digimon.data.descriptions.length; i++) {
+      if (digimon.data.descriptions[i].language == 'en_us') {
+        return digimon.data.descriptions[i].description;
       }
     }
-    setDigimonData(res);
-  }, []);
+    return 'Missing description';
+  }, [digimon]);
+
+  const getLevels = useMemo(() => {
+    if (digimon === undefined) {
+      return 'Missing Levels';
+    } else if (digimon.data.levels.length != 0) {
+      return digimon.data.levels[0].level;
+    } else {
+      return 'Missing Levels';
+    }
+  }, [digimon]);
+
+  const getSkills = useMemo(() => {
+    if (digimon === undefined) {
+      return 'Missing Skills';
+    } else if (digimon.data.skills.length != 0) {
+      return digimon.data.skills[0].skill;
+    } else {
+      return 'Missing Skills';
+    }
+  }, [digimon]);
+
+  const getSkillFlavor = useMemo(() => {
+    if (digimon === undefined) {
+      return 'Missing information';
+    } else if (digimon.data.skills.length != 0) {
+      return digimon.data.skills[0].description;
+    } else {
+      return 'Missing information';
+    }
+  }, [digimon]);
+
+  const getTypes = useMemo(() => {
+    if (digimon === undefined) {
+      return 'Missing Types';
+    } else if (digimon.data.types.length != 0) {
+      return digimon.data.types[0].type;
+    } else {
+      return 'Missing Types';
+    }
+  }, [digimon]);
 
   useEffect(() => {
     getDigimon();
   }, []);
+
+  if (digimon === undefined) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size={'large'}></ActivityIndicator>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.mainContainer}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
-            <Text style={styles.digimonName}>{digimonName}</Text>
+            <Text style={styles.digimonName}>{digimon.data.name}</Text>
           </View>
           <View style={styles.imageContainer}>
             <Image
               source={{
-                uri: digimonImage,
+                uri: digimon.data.images[0].href,
               }}
               style={styles.digimonImage}
             />
@@ -56,9 +96,7 @@ const DigimonCard = ({route, navigation}) => {
             <View style={styles.infoHeader}>
               <View style={styles.infoContainer}>
                 <Text style={styles.infoBold}>Level </Text>
-                <Text style={styles.infoDescription}>
-                  {digimonLevel[0].level}
-                </Text>
+                <Text style={styles.infoDescription}>{getLevels}</Text>
               </View>
             </View>
           </View>
@@ -66,9 +104,7 @@ const DigimonCard = ({route, navigation}) => {
             <View style={styles.infoHeader}>
               <View style={styles.infoContainer}>
                 <Text style={styles.infoBold}>Groupes </Text>
-                <Text style={styles.infoDescription}>
-                  {digimonTypes[0].type}
-                </Text>
+                <Text style={styles.infoDescription}>{getTypes}</Text>
               </View>
             </View>
           </View>
@@ -76,13 +112,11 @@ const DigimonCard = ({route, navigation}) => {
             <View style={styles.infoHeader}>
               <View style={styles.infoContainer}>
                 <Text style={styles.infoBold}>Main skill </Text>
-                <Text style={styles.infoDescription}>
-                  {digimonSkills[0].skill}
-                </Text>
+                <Text style={styles.infoDescription}>{getSkills}</Text>
               </View>
             </View>
             <Text style={{fontStyle: 'italic', marginTop: 8}}>
-              {digimonSkills[0].description}
+              {getSkillFlavor}
             </Text>
           </View>
         </View>
@@ -92,16 +126,16 @@ const DigimonCard = ({route, navigation}) => {
               styles.descriptionItem,
               {fontWeight: 'bold', fontSize: 20, textTransform: 'uppercase'},
             ]}>
-            {digimonName}
+            {digimon.data.name}
           </Text>
           <Text
             style={[
               styles.descriptionItem,
               {fontWeight: 'bold', fontSize: 16},
             ]}>
-            Release date : {digimonReleaseDate}
+            Release date : {digimon.data.releaseDate}
           </Text>
-          <Text>{digimonDescription}</Text>
+          <Text>{getDescription}</Text>
         </View>
       </ScrollView>
     </View>

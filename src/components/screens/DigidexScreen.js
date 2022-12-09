@@ -85,7 +85,7 @@ const DigidexScreen = props => {
               onPress={() => {
                 goToDigimonCard(item.id);
               }}>
-              <ItemDigimon item={item} />
+              <ItemDigimon style={{flex: 1}} item={item} />
             </TouchableOpacity>
           );
         }}

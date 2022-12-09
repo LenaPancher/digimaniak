@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -67,7 +67,6 @@ export default props => {
 
   function onAuthStateChanged(user) {
     setUser(user);
-    console.log(user);
     storeData(user);
     if (user) {
       setloggedIn(true);
@@ -90,7 +89,6 @@ export default props => {
     } catch (e) {
       // remove error
     }
-    console.log('Done.');
   }
 
   const signOut = async () => {
