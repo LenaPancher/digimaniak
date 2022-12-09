@@ -15,8 +15,8 @@ const SupportScreen = () => {
         <Text style={styles.title}>Digimaniak</Text>
         <Image style={styles.image} source={require('../../assets/logo.png')} />
         <Text style={styles.text}>
-          Digimaniak est une application mobile qui répertorie tous les digimons
-          ! Apprenez-en plus sur chaque créature et devenez Digimon Tamer.
+          Digimaniak is a mobile application that lists all the digimons ! Learn
+          more about each creature and become a Digimon Tamer.
         </Text>
         <View style={styles.icons}>
           <Ionicons name="logo-apple" color="black" size={25} />
@@ -27,47 +27,48 @@ const SupportScreen = () => {
           <Text style={styles.iconsText}>Web</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Fonctionnnalités de l'application</Text>
+          <Text style={styles.subtitle}>Features of the application</Text>
           <Text style={styles.text}>
-            Connectez-vous à travers le service Google et accédez au Digidex.
-            {'\n'}Le Digidex est une encyclopédie recensant chaques créatures
-            fictives de l'univers Digimon. {'\n'}Cet outil sert également à se
-            renseigner sur les différentes espèces et permet de savoir son nom,
-            ses attributs, ses compétences, ses possibles évolutions et voir à
-            quoi il ressemble. {'\n'}Vous pourez également créer votre devenir
-            Digimon Trainer, en renseignant votre pseudo, votre image et digimon
-            favori.
+            Log in through the Google service and access the Digidex.
+            {'\n'}The Digidex is an encyclopedia listing each fictional creature
+            from the Digimon universe. {'\n'}This tool is also used to learn
+            about information on the different species and allows to know its
+            name, its attributes, its skills, its possible evolutions and see
+            what it what it looks like. {'\n'}You can also create your become a
+            Digimon Trainer, by filling in your nickname, your image and
+            favorite digimon.
           </Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Utilisation</Text>
+          <Text style={styles.subtitle}>Usage</Text>
           <Text style={styles.text}>
-            - Récupérer le projet depuis github : "git pull
+            - Get the project from github : "git pull
             https://github.com/LenaPancher/digimaniak.git" && "cd digimaniak"
           </Text>
           <Text style={styles.text}>
-            - Installer toutes les dépendances de l'application : "npm i"
+            - Install all application dependencies : "npm i"
           </Text>
           <Text style={styles.text}>
-            - Lancer l'appli iOS (requiert MacOS) : "npx react-native run-ios"
+            - Launch the iOS application (requires MacOS) : "npx react-native
+            run-ios"
           </Text>
           <Text style={styles.text}>
-            - Lancer l'appli android : "npx react-native run-android"
+            - Launch the android application : "npx react-native run-android"
           </Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Divers</Text>
+          <Text style={styles.subtitle}>Various</Text>
           <Text style={styles.text}>
-            DAPI est une API Digimon gratuite, elle utilise des données
-            provenant de sources officielles et basées sur des fans.
+            DAPI is a free Digimon API, it uses data from official and fan based
+            sources.
           </Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Module(s) utilisé(s)</Text>
+          <Text style={styles.subtitle}>Module(s) used</Text>
           <Text style={styles.text}>- Image Picker</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Contributeurs</Text>
+          <Text style={styles.subtitle}>Contributors</Text>
           <Text style={styles.text}>
             Paul Geneve, Lucas Gauvain, Robin Littiere, Léna Pancher
           </Text>

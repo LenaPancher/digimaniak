@@ -18,10 +18,10 @@ function TabNavigator() {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen
-        name="DigimonFeed"
+        name="Digidex"
         component={DigimonFeed}
         options={{
-          tabBarLabel: 'DigimonFeed',
+          tabBarLabel: 'Digidex',
           tabBarActiveTintColor: '#145764',
           tabBarIcon: ({focused, color}) => {
             focused ? (color = '#145764') : color;
@@ -30,10 +30,10 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Profil"
+        name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Profil',
+          tabBarLabel: 'Profile',
           tabBarActiveTintColor: '#145764',
           tabBarIcon: ({focused, color}) => {
             focused ? (color = '#145764') : color;
@@ -42,10 +42,10 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Support"
+        name="About"
         component={SupportScreen}
         options={{
-          tabBarLabel: 'Support',
+          tabBarLabel: 'About',
           tabBarActiveTintColor: '#145764',
           tabBarIcon: ({focused, color}) => {
             focused ? (color = '#145764') : color;

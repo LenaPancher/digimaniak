@@ -61,7 +61,7 @@ const ProfileScreen = () => {
             </View>
           </View>
           <TouchableHighlight style={styles.buttonDelete}>
-            <Text>Supprimer</Text>
+            <Text>Delete</Text>
           </TouchableHighlight>
         </View>
       </View>

@@ -87,7 +87,7 @@ export default () => {
       <View style={styles.topContent}>
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <Text style={styles.mainText}>
-          Bienvenue au club des dresseurs Digimon !
+          Welcome to the Digimon Trainers Club !
         </Text>
       </View>
       <View style={styles.bottomContent}>

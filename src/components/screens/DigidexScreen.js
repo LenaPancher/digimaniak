@@ -72,7 +72,7 @@ const DigidexScreen = props => {
         style={styles.search}
         value={search}
         onChangeText={setSearch}
-        placeholder={'Rechercher un digimon...'}
+        placeholder={'Search for a digimon...'}
       />
       <FlatList
         onEndReached={() => decideLoading()}
