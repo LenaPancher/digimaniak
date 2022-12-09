@@ -69,7 +69,7 @@ function TabNavigator() {
 
 const DigimonFeed = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Digidex" component={DigidexScreen} />
       <Stack.Screen name="DigimonCard" component={DigimonCard} />
     </Stack.Navigator>
