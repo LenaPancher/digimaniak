@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {StyleSheet, Image, ActivityIndicator} from 'react-native';
-import {getDigimonById, getDigimonByName} from '../../helpers/apiHelper';
+import {getDigimonById} from '../../helpers/apiHelper';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const DigimonCard = ({route, navigation}) => {
