@@ -12,9 +12,9 @@ import React, {useState, useCallback, useEffect} from 'react';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation: {navigate}}) => {
   const [pseudo, setPseudo] = useState('Rio Akiyama');
   const [email, setEmail] = useState('rio@Akiyama.com');
   const [userData, setUserData] = useState({});
@@ -26,14 +26,19 @@ const ProfileScreen = () => {
   );
 
   const takePicture = useCallback(() => {
-    launchCamera({mediaType: 'photo', cameraType: 'front'}).then(photo => {
+    launchCamera({
+      mediaType: 'photo',
+      cameraType: 'front',
+      saveToPhotos: true,
+    }).then(photo => {
       if (photo.didCancel) {
         return;
       }
       console.log(photo);
+      console.log(userData.uid);
       setUriProfil(photo.assets[0].uri);
     });
-  }, []);
+  }, [userData]);
 
   const getData = async () => {
     try {
@@ -57,8 +62,13 @@ const ProfileScreen = () => {
   );
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.safeArea}>
+    <ScrollView style={styles.safeArea}>
+      <SafeAreaView>
+        <Button
+          title="GO BACK TO LOGIN SCREEN"
+          onPress={() => navigate('Login')}
+          color="#145764"
+        />
         <View style={styles.cardProfile}>
           <Image
             style={styles.image}
@@ -66,9 +76,7 @@ const ProfileScreen = () => {
               uri: uriProfil,
             }}
           />
-          <TouchableOpacity style={styles.buttonPicture} onPress={takePicture}>
-            <Text style={styles.textButtonPicture}>Take a picture</Text>
-          </TouchableOpacity>
+          <Button title="TAKE A PICTURE" onPress={takePicture} />
           <View style={styles.infoProfile}>
             <Text style={styles.pseudo}>{pseudo}</Text>
             <Text style={styles.email}>{email}</Text>
@@ -89,9 +97,6 @@ const ProfileScreen = () => {
                 />
               </View>
             </View>
-            <TouchableHighlight style={styles.buttonDelete}>
-              <Text style={styles.textButtonDelete}>Delete</Text>
-            </TouchableHighlight>
           </View>
         </View>
       </SafeAreaView>
